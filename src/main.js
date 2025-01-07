@@ -15,8 +15,8 @@ camera.position.setZ(10);
 camera.position.setX(50);
 
 // renderer.render(scene, camera);
-const ringTexture = new THREE.TextureLoader().load('images/rings.png');
-const ringNormTexture = new THREE.TextureLoader().load('images/rings_normal.jpg');
+const ringTexture = new THREE.TextureLoader().load('3DResume/images/rings.png');
+const ringNormTexture = new THREE.TextureLoader().load('3DResume/images/rings_normal.jpg');
 // const geometry = new THREE.TorusGeometry(10, 4, 16, 1000);
 // const material = new THREE.MeshStandardMaterial({color: 0xFF6347});
 const torus = new THREE.Mesh(
@@ -30,15 +30,15 @@ torus.scale.set(1, 1, .05);
 torus.rotateX(4/9*Math.PI);
 scene.add(torus);
 
-const calebTexture = new THREE.TextureLoader().load('images/caleb.jpg');
+const calebTexture = new THREE.TextureLoader().load('3DResume/images/caleb.jpg');
 const caleb = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
   new THREE.MeshBasicMaterial({map: calebTexture})
 );
 scene.add(caleb);
 
-const marsTexture = new THREE.TextureLoader().load('images/mars_unwrapped.jpg');
-const marsNormalTexture = new THREE.TextureLoader().load('images/mars_norm.jpg');
+const marsTexture = new THREE.TextureLoader().load('3DResume/images/mars_unwrapped.jpg');
+const marsNormalTexture = new THREE.TextureLoader().load('3DResume/images/mars_norm.jpg');
 const mars = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
   new THREE.MeshStandardMaterial({
@@ -125,7 +125,7 @@ function addStar() {
 // }
 Array(200).fill().forEach(addStar);
 
-const spaceTexture = new THREE.TextureLoader().load('images/earth.jpg');
+const spaceTexture = new THREE.TextureLoader().load('3DResume/images/earth.jpg');
 scene.background = spaceTexture;
 
 caleb.position.z = -10;
