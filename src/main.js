@@ -14,9 +14,29 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 camera.position.setZ(10);
 camera.position.setX(50);
 
+const spaceTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/earth.jpg');
+const backgroundGeometry = new THREE.PlaneGeometry(370, 200);
+const backgroundMaterial = new THREE.MeshBasicMaterial({
+  map: spaceTexture,
+  depthTest: false
+});
+const backgroundMesh = new THREE.Mesh(backgroundGeometry, backgroundMaterial);
+backgroundMesh.material.side = THREE.DoubleSide;
+backgroundMesh.position.z = -100;
+backgroundMesh.position.x = -20;
+backgroundMesh.position.y = -20;
+scene.add(backgroundMesh);
+
+const calebTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/caleb.jpg');
+const caleb = new THREE.Mesh(
+  new THREE.BoxGeometry(3, 3, 3),
+  new THREE.MeshBasicMaterial({map: calebTexture})
+);
+scene.add(caleb);
+
 // renderer.render(scene, camera);
-const ringTexture = new THREE.TextureLoader().load('/images/rings.png');
-const ringNormTexture = new THREE.TextureLoader().load('/images/rings_normal.jpg');
+const ringTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/rings.png');
+const ringNormTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/rings_normal.jpg');
 // const geometry = new THREE.TorusGeometry(10, 4, 16, 1000);
 // const material = new THREE.MeshStandardMaterial({color: 0xFF6347});
 const torus = new THREE.Mesh(
@@ -30,15 +50,10 @@ torus.scale.set(1, 1, .05);
 torus.rotateX(4/9*Math.PI);
 scene.add(torus);
 
-const calebTexture = new THREE.TextureLoader().load('/images/caleb.jpg');
-const caleb = new THREE.Mesh(
-  new THREE.BoxGeometry(3, 3, 3),
-  new THREE.MeshBasicMaterial({map: calebTexture})
-);
-scene.add(caleb);
 
-const marsTexture = new THREE.TextureLoader().load('/images/mars_unwrapped.jpg');
-const marsNormalTexture = new THREE.TextureLoader().load('/images/mars_norm.jpg');
+
+const marsTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_unwrapped.jpg');
+const marsNormalTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_norm.jpg');
 const mars = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
   new THREE.MeshStandardMaterial({
@@ -80,7 +95,7 @@ const loader = new GLTFLoader();
 function addStar() {
   // Load your star model
   loader.load(
-    '/images/star.glb', // Replace with the actual path to your model file
+    'https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/star.glb', // Replace with the actual path to your model file
     function (gltf) {
       const star = gltf.scene;
 
@@ -125,8 +140,8 @@ function addStar() {
 // }
 Array(200).fill().forEach(addStar);
 
-const spaceTexture = new THREE.TextureLoader().load('/images/earth.jpg');
-scene.background = spaceTexture;
+// const spaceTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/earth.jpg');
+// scene.background = spaceTexture;
 
 caleb.position.z = -10;
 mars.position.z = 10;
@@ -143,8 +158,11 @@ function moveCamera() {
 
   caleb.rotation.y += .01;
   caleb.rotation.z += .01;
-  caleb.position.z = t * .1;
-  caleb.position.z = Math.min(caleb.position.z, -10);
+  caleb.position.z = t * .2;
+  caleb.position.z = Math.min(caleb.position.z, -8);
+
+  // backgroundMesh.position.z = Math.min(backgroundMesh.position.z, -100);
+  backgroundMesh.position.z = t * .1 + -100;
 
   camera.position.z = t * -.01;
   camera.position.x = t * -.002;
@@ -165,5 +183,4 @@ function animate() {
 
   renderer.render(scene, camera);
 }
-
 animate();
