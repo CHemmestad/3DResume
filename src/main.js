@@ -2,6 +2,8 @@ import './style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -30,7 +32,7 @@ scene.add(backgroundMesh);
 const calebTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/caleb.jpg');
 const caleb = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
-  new THREE.MeshBasicMaterial({map: calebTexture})
+  new THREE.MeshBasicMaterial({ map: calebTexture })
 );
 scene.add(caleb);
 
@@ -47,7 +49,7 @@ const torus = new THREE.Mesh(
   })
 );
 torus.scale.set(1, 1, .05);
-torus.rotateX(4/9*Math.PI);
+torus.rotateX(4 / 9 * Math.PI);
 scene.add(torus);
 
 
@@ -91,7 +93,6 @@ const controls = new OrbitControls(camera, renderer.domElement);
 // Array(200).fill().forEach(addStar);
 
 const loader = new GLTFLoader();
-
 function addStar() {
   // Load your star model
   loader.load(
@@ -101,25 +102,29 @@ function addStar() {
 
       // Randomize position
       const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
-      star.position.set(x, y, z);
 
-      // Scale the star if needed
-      star.scale.set(0.25, 0.25, 0.25); // Adjust the scale to fit your scene
+      let area = 3;
+      if (Math.abs(x) > area && Math.abs(y) > area) {
+        star.position.set(x, y, z);
 
-      star.traverse((child) => {
-        if (child.isMesh) {
-          child.material = new THREE.MeshStandardMaterial({
-            color: 0xffffff, // Base color
-            emissive: 0xffff00, // Subtle emissive (glow) effect
-            emissiveIntensity: 0.2, // Adjust intensity as needed
-            roughness: 1, // Adds shading to the surface
-            metalness: .5, // Adds slight metallic reflection
-          });
-        }
-      });
+        const randomScale = THREE.MathUtils.randFloat(0.05, 0.225);
+        star.scale.set(randomScale, randomScale, randomScale);
 
-      // Add the star model to the scene
-      scene.add(star);
+        star.traverse((child) => {
+          if (child.isMesh) {
+            child.material = new THREE.MeshStandardMaterial({
+              color: 0xffcc00, // Yellowish color (not too bright)
+              emissive: 0xcccc00, // Subtle emissive (glow) effect (yellowish glow)
+              emissiveIntensity: 0.1, // Reduced intensity for a more subtle glow
+              roughness: 0.5, // Some roughness to add shading to the surface
+              metalness: 0, // No metallic reflection
+            });
+          }
+        });
+
+        // Add the star model to the scene
+        scene.add(star);
+      }
     },
     undefined,
     function (error) {
@@ -127,6 +132,37 @@ function addStar() {
     }
   );
 }
+
+const mtlLoader = new MTLLoader();
+const objLoader = new OBJLoader();
+
+mtlLoader.load('images/shuttle.mtl', function (materials) {
+  materials.preload();
+
+  objLoader.setMaterials(materials);
+  objLoader.load('images/shuttle.obj', function (object) {
+    object.position.z = 10;
+    object.position.y = 1;
+    object.rotateX(-1/12*Math.PI);
+    object.rotateY(1/12*Math.PI);
+    object.rotateZ(-1/10*Math.PI);
+    scene.add(object);
+  });
+});
+
+// loader.load(
+//   'images/spaceshuttle.glb', // Replace with the actual path to your model file
+//   function (gltf) {
+//     const shuttle = gltf.scene;
+//     shuttle.position.z = 10;
+//     shuttle.position.y = 1;
+//     scene.add(shuttle);
+//   },
+//   undefined,
+//   function (error) {
+//     console.error('An error occurred while loading the star model:', error);
+//   }
+// );
 
 // function addStar() {
 //   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -138,7 +174,7 @@ function addStar() {
 
 //   scene.add(star);
 // }
-Array(200).fill().forEach(addStar);
+Array(1000).fill().forEach(addStar);
 
 // const spaceTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/earth.jpg');
 // scene.background = spaceTexture;
