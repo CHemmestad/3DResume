@@ -95,7 +95,7 @@ const loader = new GLTFLoader();
 function addStar() {
   // Load your star model
   loader.load(
-    'https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/star.glb', // Replace with the actual path to your model file
+    'https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/star2.glb', // Replace with the actual path to your model file
     function (gltf) {
       const star = gltf.scene;
 
@@ -110,10 +110,10 @@ function addStar() {
         if (child.isMesh) {
           child.material = new THREE.MeshStandardMaterial({
             color: 0xffffff, // Base color
-            emissive: 0x444444, // Subtle emissive (glow) effect
-            emissiveIntensity: 7, // Adjust intensity as needed
-            roughness: 0.9, // Adds shading to the surface
-            metalness: 0.5, // Adds slight metallic reflection
+            emissive: 0xffff00, // Subtle emissive (glow) effect
+            emissiveIntensity: 0.2, // Adjust intensity as needed
+            roughness: 1, // Adds shading to the surface
+            metalness: .5, // Adds slight metallic reflection
           });
         }
       });
