@@ -13,8 +13,9 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(10);
-camera.position.setX(50);
+camera.position.setZ(1);
+camera.position.setY(0);
+camera.position.setX(0);
 
 const spaceTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/earth.jpg');
 const backgroundGeometry = new THREE.PlaneGeometry(370, 200);
@@ -103,7 +104,7 @@ function addStar() {
       // Randomize position
       const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
 
-      let area = 3;
+      let area = 3.5;
       if (Math.abs(x) > area && Math.abs(y) > area) {
         star.position.set(x, y, z);
 
@@ -136,11 +137,11 @@ function addStar() {
 const mtlLoader = new MTLLoader();
 const objLoader = new OBJLoader();
 
-mtlLoader.load('images/shuttle.mtl', function (materials) {
+mtlLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/shuttle.mtl', function (materials) {
   materials.preload();
 
   objLoader.setMaterials(materials);
-  objLoader.load('images/shuttle.obj', function (object) {
+  objLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/shuttle.obj', function (object) {
     object.position.z = 10;
     object.position.y = 1;
     object.rotateX(-1/12*Math.PI);
