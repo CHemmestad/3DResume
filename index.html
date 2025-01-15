@@ -1,80 +1,197 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Caleb's Portfolio</title>
-    <script type="module" crossorigin src="/3DResume/assets/index-Cv4XFY-n.js"></script>
-    <link rel="stylesheet" crossorigin href="/3DResume/assets/index-Dl5sbaCp.css">
-  </head>
-  <body>
-    <canvas id="bg"></canvas>
 
-    <main>
-      <header>
-        <h1>Caleb's Portfolio</h1>
-        <p>Welcome to my portfolio!</p>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <title>Caleb's Portfolio</title>
 
-      <blockquote>
-        <p>I like making stuff and stuff</p>
-      </blockquote>
+  <style>
+    .transparent {
+      background-color: rgba(0, 0, 0, 0);
+    }
 
-      <section>
-        <h2>Manifesto</h2>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
+    .custom {
+      color: white;
+      margin: 25px;
+      padding: .75rem;
+      background-color: rgba(36, 36, 36, 0);
+      border: 2px solid rgba(136, 160, 223, 0.612);
+      border-right: 0px;
+      border-left: 0px;
+      border-radius: 10px;
+    }
 
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
+    .custom-list-item {
+      color: white;
+      margin: 25px;
+      padding: .75rem;
+      background-color: rgba(190, 190, 190, 0.1);
+      border: 2px solid rgba(136, 160, 223, 0.612);
+      border-radius: 10px;
+    }
 
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
+    img {
+      max-height: 500px;
+      object-fit: contain;
+    }
 
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
+    .list-group-item {
+      border-bottom: solid rgba(136, 160, 223, 0.612);
+    }
+  </style>
+  <script type="module" crossorigin src="/3DResume/assets/index-Cv4XFY-n.js"></script>
+  <link rel="stylesheet" crossorigin href="/3DResume/assets/index-Dl5sbaCp.css">
+</head>
 
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
+<body>
+  <canvas id="bg"></canvas>
 
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
+  <main>
+    <header>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <h1 style="text-shadow: 
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black; 
+        font-size: 5rem;
+        ">Caleb's Portfolio</h1>
+      </div>
+      <p>Welcome to my portfolio!</p>
+    </header>
 
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
+    <blockquote>
+      <p>I like making stuff and stuff</p>
+      <p>I like making stuff and stuff</p>
+    </blockquote>
 
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
+    <div class="card text-center custom">
+      <div class="card-header">
+        <h2>My Projects</h2>
+      </div>
+      <div class="card-body transparent">
+        <ul class="list-group list-group-flush transparent">
+          <li class="list-group-item transparent">
+            <div class="card mb-3 custom custom-list-item">
+              <img src="/3DResume/assets/chess-CyO22so8.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Chess Game</h5>
+                <p class="card-text">A completely functional chess game in java.</p>
+                <a href="https://github.com/CHemmestad/SemesterProject-Chess-SoftwareDesign-FINAL/tree/main/Semester%20Project%20-%20Chess" target="_blank"
+                  rel="noopener noreferrer" class="btn btn-primary">Check out code!</a>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item transparent">
+            <div class="card mb-3 custom custom-list-item">
+              <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Remote Controlled Roomba with Mapping</h5>
+                <p class="card-text">A completely functional chess game in java.</p>
+                <a href="https://github.com/CHemmestad/CPRE288_FinalLabProject/tree/main/FinalCode" target="_blank"
+                  rel="noopener noreferrer" class="btn btn-primary">Check out code!</a>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item transparent">
+            <div class="card mb-3 custom custom-list-item">
+              <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Android App</h5>
+                <p class="card-text">A completely functional chess game in java.</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item transparent">
+            <div class="card mb-3 custom custom-list-item">
+              <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">MIPS Processor</h5>
+                <p class="card-text">A completely functional chess game in java.</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item transparent">
+            <div class="card mb-3 custom custom-list-item">
+              <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Firewall with Virtual Machines</h5>
+                <p class="card-text">A completely functional chess game in java.</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item transparent">
+            <div class="card mb-3 custom custom-list-item">
+              <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Website Using React, Node, MySQL, Bootstrap, and More</h5>
+                <p class="card-text">A completely functional chess game in java.</p>
+                <a href="https://github.com/CHemmestad/FinalProject319/tree/main" target="_blank"
+                  rel="noopener noreferrer" class="btn btn-primary">Check out code!</a>
+                <a href="https://griffinurban03.github.io/Midterm_Project_SE319/" target="_blank"
+                  rel="noopener noreferrer" class="btn btn-primary">Check out website!</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-        </p>
-      </section>
+    <section>
+      <h2>Manifesto</h2>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!
 
-      <section class="light">
-        <h2>Projects</h2>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!</p>
-        <h2>Accomplishments</h2>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!</p>
-      </section>
+      </p>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!
 
-      <blockquote>
-        <p>I like making stuff and stuff</p>
-      </blockquote>
+      </p>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!
 
-      <section class="left">
-        <h2>Work History</h2>
-        <h3>McDonalds</h3>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!</p>
-        <h3>Burgers</h3>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!</p>
-        <h3>Tacos</h3>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!</p>
-      </section>
+      </p>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!
 
-      <blockquote>
-        <p>Thanks for visiting</p>
-      </blockquote>
+      </p>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!
 
-    </main>
+      </p>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!
 
-  </body>
+      </p>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!
+
+      </p>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!
+
+      </p>
+    </section>
+
+    <blockquote>
+      <p>I like making stuff and stuff</p>
+    </blockquote>
+
+    <section class="left">
+      <h2>Work History</h2>
+      <h3>McDonalds</h3>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!</p>
+      <h3>Burgers</h3>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!</p>
+      <h3>Tacos</h3>
+      <p>Something something blah blah blah blah just filling in empty space for scrolling!</p>
+    </section>
+
+    <blockquote>
+      <p>Thanks for visiting</p>
+    </blockquote>
+
+  </main>
+
+</body>
+
 </html>
