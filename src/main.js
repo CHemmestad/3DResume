@@ -53,8 +53,6 @@ torus.scale.set(1, 1, .05);
 torus.rotateX(4 / 9 * Math.PI);
 scene.add(torus);
 
-
-
 const marsTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_unwrapped.jpg');
 const marsNormalTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_norm.jpg');
 const mars = new THREE.Mesh(
@@ -133,6 +131,7 @@ function addStar() {
     }
   );
 }
+Array(1000).fill().forEach(addStar);
 
 const mtlLoader = new MTLLoader();
 const objLoader = new OBJLoader();
@@ -151,6 +150,29 @@ mtlLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/publi
   });
 });
 
+let thanks;
+loader.load('public/images/thanks.glb',
+  function (gltf) {
+    thanks = gltf.scene;
+    scene.add(thanks);
+  },
+  function (xhr) {},
+  function (error) {}
+);
+
+
+// const marsTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_unwrapped.jpg');
+// const marsNormalTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_norm.jpg');
+// const mars = new THREE.Mesh(
+//   new THREE.SphereGeometry(3, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: marsTexture,
+//     normalMap: marsNormalTexture
+//   })
+// );
+// scene.add(mars);
+
+
 // loader.load(
 //   'images/spaceshuttle.glb', // Replace with the actual path to your model file
 //   function (gltf) {
@@ -164,18 +186,6 @@ mtlLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/publi
 //     console.error('An error occurred while loading the star model:', error);
 //   }
 // );
-
-// function addStar() {
-//   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-//   const material = new THREE.MeshBasicMaterial({color: 0xFFFFFF});
-//   const star = new THREE.Mesh(geometry, material);
-
-//   const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100));
-//   star.position.set(x, y, z);
-
-//   scene.add(star);
-// }
-Array(1000).fill().forEach(addStar);
 
 // const spaceTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/earth.jpg');
 // scene.background = spaceTexture;
@@ -213,8 +223,6 @@ function animate() {
   requestAnimationFrame(animate);
 
   torus.rotation.z -= 0.005;
-
-  mars.rotation.y += 0.005;
 
   controls.update();
 
