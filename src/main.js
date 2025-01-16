@@ -150,28 +150,33 @@ mtlLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/publi
   });
 });
 
+// let shuttle;
+// loader.load('public/images/shuttle.glb',
+//   function (gltf) {
+//     shuttle = gltf.scene;
+//     scene.add(shuttle);
+//   },
+//   function (xhr) {},
+//   function (error) {}
+// );
+
 let thanks;
-loader.load('public/images/thanks.glb',
+loader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/thanks.glb',
   function (gltf) {
     thanks = gltf.scene;
+    thanks.position.z = 54;
+    thanks.position.y = 12;
+    thanks.position.x = 11;
     scene.add(thanks);
   },
   function (xhr) {},
   function (error) {}
 );
-
-
-// const marsTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_unwrapped.jpg');
-// const marsNormalTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_norm.jpg');
-// const mars = new THREE.Mesh(
-//   new THREE.SphereGeometry(3, 32, 32),
-//   new THREE.MeshStandardMaterial({
-//     map: marsTexture,
-//     normalMap: marsNormalTexture
-//   })
-// );
-// scene.add(mars);
-
+const thanksLight = new THREE.PointLight(0xFFFFFF, 25, 25, 1);
+thanksLight.position.set(11, 12, 70);
+scene.add(thanksLight);
+const lightHelper = new THREE.PointLightHelper(thanksLight);
+scene.add(lightHelper);
 
 // loader.load(
 //   'images/spaceshuttle.glb', // Replace with the actual path to your model file
@@ -223,6 +228,12 @@ function animate() {
   requestAnimationFrame(animate);
 
   torus.rotation.z -= 0.005;
+
+  mars.rotation.y += 0.005;
+  
+  if(thanks) {
+    thanks.rotation.y -= 0.005;
+  }
 
   controls.update();
 
