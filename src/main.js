@@ -6,6 +6,13 @@ import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import Thanks from '/public/images/thanks.glb';
 
+const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({
@@ -188,8 +195,8 @@ scene.add(thanksLight);
 // const spaceTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/earth.jpg');
 // scene.background = spaceTexture;
 
-caleb.position.z = -10;
-caleb.position.x = 5.436;
+caleb.position.z = -8;
+caleb.position.x = 5.4;
 mars.position.z = 10;
 mars.position.setX(-8);
 torus.position.z = 10;
@@ -209,6 +216,7 @@ function moveCamera() {
   caleb.position.x = 2*(2.7*Math.exp(-10*(camera.position.z-1)));
   // console.log(2*(2.718*Math.exp(-10*(camera.position.z-1))));
   // console.log(camera.position.z-1);
+  // console.log(caleb.position.x + ', ' + caleb.position.z);
 
   // backgroundMesh.position.z = Math.min(backgroundMesh.position.z, -100);
   backgroundMesh.position.z = t * .1 + -100;
