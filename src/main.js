@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import Thanks from '/public/images/thanks.glb';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -136,20 +137,26 @@ Array(1000).fill().forEach(addStar);
 const mtlLoader = new MTLLoader();
 const objLoader = new OBJLoader();
 
+let ship;
 mtlLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/shuttle.mtl', function (materials) {
   materials.preload();
-
   objLoader.setMaterials(materials);
   objLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/shuttle.obj', function (object) {
     object.position.z = 10;
     object.position.y = 1;
-    object.rotateX(-1/12*Math.PI);
-    object.rotateY(1/12*Math.PI);
-    object.rotateZ(-1/10*Math.PI);
-    scene.add(object);
+    object.rotateX(-1 / 12 * Math.PI);
+    object.rotateY(1 / 12 * Math.PI);
+    // object.rotateZ(-1/10*Math.PI);
+    ship = object;
+    scene.add(ship);
   });
 });
 
+/* 
+Textures only appear if i make the object myself in blender and paint it myself for some reason which i tested with the thank you message that i made myself
+if i download one, even though the textures show up in blender, it doesnt work and i dont know why
+i really dont want to model it myself so yeah im going to keep trying
+*/
 // let shuttle;
 // loader.load('public/images/shuttle.glb',
 //   function (gltf) {
@@ -161,7 +168,7 @@ mtlLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/publi
 // );
 
 let thanks;
-loader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/thanks.glb',
+loader.load(Thanks,
   function (gltf) {
     thanks = gltf.scene;
     thanks.position.z = 54;
@@ -169,33 +176,20 @@ loader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/i
     thanks.position.x = 11;
     scene.add(thanks);
   },
-  function (xhr) {},
-  function (error) {}
+  function (xhr) { },
+  function (error) { }
 );
 const thanksLight = new THREE.PointLight(0xFFFFFF, 25, 25, 1);
 thanksLight.position.set(11, 12, 70);
 scene.add(thanksLight);
-const lightHelper = new THREE.PointLightHelper(thanksLight);
-scene.add(lightHelper);
-
-// loader.load(
-//   'images/spaceshuttle.glb', // Replace with the actual path to your model file
-//   function (gltf) {
-//     const shuttle = gltf.scene;
-//     shuttle.position.z = 10;
-//     shuttle.position.y = 1;
-//     scene.add(shuttle);
-//   },
-//   undefined,
-//   function (error) {
-//     console.error('An error occurred while loading the star model:', error);
-//   }
-// );
+// const lightHelper = new THREE.PointLightHelper(thanksLight);
+// scene.add(lightHelper);
 
 // const spaceTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/earth.jpg');
 // scene.background = spaceTexture;
 
 caleb.position.z = -10;
+caleb.position.x = 5.436;
 mars.position.z = 10;
 mars.position.setX(-8);
 torus.position.z = 10;
@@ -212,6 +206,9 @@ function moveCamera() {
   caleb.rotation.z += .01;
   caleb.position.z = t * .2;
   caleb.position.z = Math.min(caleb.position.z, -8);
+  caleb.position.x = 2*(2.7*Math.exp(-10*(camera.position.z-1)));
+  // console.log(2*(2.718*Math.exp(-10*(camera.position.z-1))));
+  // console.log(camera.position.z-1);
 
   // backgroundMesh.position.z = Math.min(backgroundMesh.position.z, -100);
   backgroundMesh.position.z = t * .1 + -100;
@@ -224,15 +221,50 @@ function moveCamera() {
 }
 document.body.onscroll = moveCamera;
 
+const value = 0.0025;
+const rotation = 0.2;
+const speed = 0.0025;
+const maxDistance = 12;
+const minDistance = 10;
+let dir = 'r';
+let mov = 'f';
+function animateShip(ship) {
+  if (dir === 'r') {
+    ship.rotation.z -= value;
+  } else if (dir === 'l') {
+    ship.rotation.z += value;
+  }
+  if (ship.rotation.z <= -rotation) {
+    dir = 'l';
+  } else if (ship.rotation.z >= rotation) {
+    dir = 'r';
+  }
+
+  if (mov === 'f') {
+    ship.position.z += speed;
+  } else if (mov === 'b') {
+    ship.position.z -= speed;
+  }
+  if (ship.position.z <= minDistance) {
+    mov = 'f';
+  } else if (ship.position.z >= maxDistance) {
+    mov = 'b';
+  }
+}
+
 function animate() {
   requestAnimationFrame(animate);
 
   torus.rotation.z -= 0.005;
 
   mars.rotation.y += 0.005;
-  
-  if(thanks) {
+
+  if (thanks) {
     thanks.rotation.y -= 0.005;
+  }
+
+  if (ship) {
+    animateShip(ship);
   }
 
   controls.update();
