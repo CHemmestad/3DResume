@@ -42,7 +42,7 @@
     }
 
     img {
-      height: 500px;
+      max-height: 500px;
       object-fit: contain;
     }
 
@@ -106,6 +106,7 @@
 
   <main>
     <div>
+
       <header>
         <div style="display: flex; justify-content: center; align-items: center;">
           <h1 class="outlined" style="font-size: clamp(2rem, 5vw, 5rem);">Caleb's Portfolio</h1>
@@ -525,6 +526,7 @@
       </div>
 
       <h2 class="title centered">Contact Info</h2>
+
       <h2 class="title centered">Message Me</h2>
       <div class="centered">
         <div class="custom about">
@@ -557,7 +559,25 @@
                 <div class="col-md-5 form-group text-center">
                   <!-- <input type="submit" value="Send Message" class="btn btn-block btn-primary rounded-0 py-2 px-4">
                   <span class="submitting"></span> -->
-                  
+                  <button type="button" class="btn btn-primary disabled" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Send Message
+                  </button>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Something
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </form>
@@ -568,54 +588,6 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-      </button>
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              Something
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <section>
-        <h2>Manifesto</h2>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
-
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
-
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
-      </section>
-
-      <section>
-        <h2>Contact</h2>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
-
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
-
-        </p>
-        <p>Something something blah blah blah blah just filling in empty space for scrolling!
-      </section>
-
-      <blockquote>
-        <p>I like making stuff and stuff</p>
-      </blockquote>
 
       <section class="left">
         <h2>Work History</h2>
