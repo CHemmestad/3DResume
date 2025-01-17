@@ -19,8 +19,8 @@
 
     .custom {
       color: white;
-      margin: 25px;
       padding: .75rem;
+      margin: 1%;
       background-color: rgba(36, 36, 36, 0);
       border: 2px solid rgba(136, 160, 223, 0.612);
       border-right: 0px;
@@ -30,8 +30,6 @@
 
     .custom-list-item {
       color: white;
-      margin: 25px;
-      padding: .75rem;
       background-color: rgba(190, 190, 190, 0.1);
       border: 2px solid rgba(136, 160, 223, 0.612);
       border-radius: 10px;
@@ -45,8 +43,27 @@
     .list-group-item {
       border-bottom: solid rgba(136, 160, 223, 0.612);
     }
+
+    .skills {
+      border: 2px solid white;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px;
+      width: fit-content;
+      max-width: 50%;
+    }
+
+    .centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      margin: 5px;
+    }
   </style>
-  <script type="module" crossorigin src="/3DResume/assets/index-BjijPKiQ.js"></script>
+  <script type="module" crossorigin src="/3DResume/assets/index-BkF1XwUu.js"></script>
   <link rel="stylesheet" crossorigin href="/3DResume/assets/index-Dl5sbaCp.css">
 </head>
 
@@ -82,10 +99,19 @@
             <div class="card mb-3 custom custom-list-item">
               <img src="/3DResume/assets/chess-CyO22so8.png" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Chess Game</h5>
-                <p class="card-text">A completely functional chess game in java.</p>
-                <a href="https://github.com/CHemmestad/SemesterProject-Chess-SoftwareDesign-FINAL/tree/main/Semester%20Project%20-%20Chess" target="_blank"
-                  rel="noopener noreferrer" class="btn btn-primary">Check out code!</a>
+                <div class="centered">
+                  <h3 class="card-title">Chess Game</h3>
+                  <p class="card-text">A completely functional chess game in java.</p>
+                  <div class="skills">
+                    <h5 class="card-title">Primary Skills</h5>
+                    <span class="badge rounded-pill text-bg-primary">Java</span>
+                    <span class="badge rounded-pill text-bg-primary">Spring</span>
+                    <span class="badge rounded-pill text-bg-primary">Software Design</span>
+                    <span class="badge rounded-pill text-bg-primary">UML</span>
+                  </div>
+                </div>
+                <a href="https://github.com/CHemmestad/SemesterProject-Chess-SoftwareDesign-FINAL/tree/main/Semester%20Project%20-%20Chess"
+                  target="_blank" rel="noopener noreferrer" class="btn btn-primary">Check out code!</a>
               </div>
             </div>
           </li>
@@ -93,8 +119,17 @@
             <div class="card mb-3 custom custom-list-item">
               <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Remote Controlled Roomba with Mapping</h5>
-                <p class="card-text">A completely functional chess game in java.</p>
+                <div class="centered">
+                  <h3 class="card-title">Remote Controlled Roomba with Mapping</h3>
+                  <p class="card-text">A completely functional chess game in java.</p>
+                  <div class="skills">
+                    <h5 class="card-title">Primary Skills</h5>
+                    <span class="badge rounded-pill text-bg-primary">C</span>
+                    <span class="badge rounded-pill text-bg-primary">Python</span>
+                    <span class="badge rounded-pill text-bg-primary">Websocket</span>
+                    <span class="badge rounded-pill text-bg-primary">Bit Manipulation</span>
+                  </div>
+                </div>
                 <a href="https://github.com/CHemmestad/CPRE288_FinalLabProject/tree/main/FinalCode" target="_blank"
                   rel="noopener noreferrer" class="btn btn-primary">Check out code!</a>
               </div>
@@ -104,8 +139,23 @@
             <div class="card mb-3 custom custom-list-item">
               <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Android App</h5>
-                <p class="card-text">A completely functional chess game in java.</p>
+                <div class="centered">
+                  <h3 class="card-title">Android App</h3>
+                  <p class="card-text">A completely functional chess game in java.</p>
+                  <div class="skills">
+                    <h5 class="card-title">Primary Skills</h5>
+                    <span class="badge rounded-pill text-bg-primary">Java</span>
+                    <span class="badge rounded-pill text-bg-primary">Spring Boot</span>
+                    <span class="badge rounded-pill text-bg-primary">MySQL</span>
+                    <span class="badge rounded-pill text-bg-primary">Postman</span>
+                    <span class="badge rounded-pill text-bg-primary">Websocket</span>
+                    <span class="badge rounded-pill text-bg-primary">GitLab</span>
+                    <span class="badge rounded-pill text-bg-primary">Runners</span>
+                    <span class="badge rounded-pill text-bg-primary">IntelliJ</span>
+                    <span class="badge rounded-pill text-bg-primary">Project Management</span>
+                    <span class="badge rounded-pill text-bg-primary">Software Design</span>
+                  </div>
+                </div>
               </div>
             </div>
           </li>
@@ -113,8 +163,18 @@
             <div class="card mb-3 custom custom-list-item">
               <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">MIPS Processor</h5>
-                <p class="card-text">A completely functional chess game in java.</p>
+                <div class="centered">
+                  <h3 class="card-title">MIPS Processor</h3>
+                  <p class="card-text">A completely functional chess game in java.</p>
+                  <div class="skills">
+                    <h5 class="card-title">Primary Skills</h5>
+                    <span class="badge rounded-pill text-bg-primary">VHDL</span>
+                    <span class="badge rounded-pill text-bg-primary">ModelSim</span>
+                    <span class="badge rounded-pill text-bg-primary">Binary Arithmetic</span>
+                    <span class="badge rounded-pill text-bg-primary">Assembly</span>
+                    <span class="badge rounded-pill text-bg-primary">Computer Architecture</span>
+                  </div>
+                </div>
               </div>
             </div>
           </li>
@@ -122,8 +182,21 @@
             <div class="card mb-3 custom custom-list-item">
               <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Firewall with Virtual Machines</h5>
-                <p class="card-text">A completely functional chess game in java.</p>
+                <div class="centered">
+                  <h3 class="card-title">Firewall with Virtual Machines</h3>
+                  <p class="card-text">A completely functional chess game in java.</p>
+                  <div class="skills">
+                    <h5 class="card-title">Primary Skills</h5>
+                    <span class="badge rounded-pill text-bg-primary">IP Addresses</span>
+                    <span class="badge rounded-pill text-bg-primary">Port Forwarding</span>
+                    <span class="badge rounded-pill text-bg-primary">Cyber Security Threats</span>
+                    <span class="badge rounded-pill text-bg-primary">PHP</span>
+                    <span class="badge rounded-pill text-bg-primary">Wire Shark</span>
+                    <span class="badge rounded-pill text-bg-primary">Wazuh</span>
+                    <span class="badge rounded-pill text-bg-primary">VMware</span>
+                    <span class="badge rounded-pill text-bg-primary">pfSense</span>
+                  </div>
+                </div>
               </div>
             </div>
           </li>
@@ -131,8 +204,22 @@
             <div class="card mb-3 custom custom-list-item">
               <img src="/3DResume/assets/earth-DREKF1dP.jpg" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">Website Using React, Node, MySQL, Bootstrap, and More</h5>
-                <p class="card-text">A completely functional chess game in java.</p>
+                <div class="centered">
+                  <h3 class="card-title">Website using React, Node, MySQL, Bootstrap, and More</h3>
+                  <p class="card-text">A completely functional chess game in java.</p>
+                  <div class="skills">
+                    <h5 class="card-title">Primary Skills</h5>
+                    <span class="badge rounded-pill text-bg-primary">HTML</span>
+                    <span class="badge rounded-pill text-bg-primary">CSS</span>
+                    <span class="badge rounded-pill text-bg-primary">JS</span>
+                    <span class="badge rounded-pill text-bg-primary">React</span>
+                    <span class="badge rounded-pill text-bg-primary">Node</span>
+                    <span class="badge rounded-pill text-bg-primary">MySQL</span>
+                    <span class="badge rounded-pill text-bg-primary">MongoDB</span>
+                    <span class="badge rounded-pill text-bg-primary">Bootstrap</span>
+                    <span class="badge rounded-pill text-bg-primary">Hooks</span>
+                  </div>
+                </div>
                 <a href="https://github.com/CHemmestad/FinalProject319/tree/main" target="_blank"
                   rel="noopener noreferrer" class="btn btn-primary">Check out code!</a>
                 <a href="https://griffinurban03.github.io/Midterm_Project_SE319/" target="_blank"
