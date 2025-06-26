@@ -132,7 +132,7 @@ function addStar() {
     }
   );
 }
-Array(1000).fill().forEach(addStar);
+Array(500).fill().forEach(addStar);
 
 const mtlLoader = new MTLLoader();
 const objLoader = new OBJLoader();
