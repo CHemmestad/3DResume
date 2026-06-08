@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import Thanks from '/public/images/thanks.glb';
+// import Thanks from '/public/images/thanks.glb';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -168,7 +168,7 @@ i really dont want to model it myself so yeah im going to keep trying
 // );
 
 let thanks;
-loader.load(Thanks,
+loader.load("public/images/thanks.glb",
   function (gltf) {
     thanks = gltf.scene;
     thanks.position.z = 54;
