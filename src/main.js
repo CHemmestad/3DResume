@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import Thanks from '/public/images/thanks.glb';
+// import Thanks from '/public/images/thanks.glb';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -18,7 +18,7 @@ camera.position.setZ(1);
 camera.position.setY(0);
 camera.position.setX(0);
 
-const spaceTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/earth.jpg');
+const spaceTexture = new THREE.TextureLoader().load('public/images/earth.jpg');
 const backgroundGeometry = new THREE.PlaneGeometry(370, 200);
 const backgroundMaterial = new THREE.MeshBasicMaterial({
   map: spaceTexture,
@@ -31,39 +31,23 @@ backgroundMesh.position.x = -20;
 backgroundMesh.position.y = -20;
 scene.add(backgroundMesh);
 
-const calebTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/caleb.jpg');
+const calebTexture = new THREE.TextureLoader().load('public/images/caleb.jpg');
 const caleb = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
   new THREE.MeshBasicMaterial({ map: calebTexture })
 );
 scene.add(caleb);
 
-// renderer.render(scene, camera);
-const ringTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/rings.png');
-const ringNormTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/rings_normal.jpg');
-// const geometry = new THREE.TorusGeometry(10, 4, 16, 1000);
-// const material = new THREE.MeshStandardMaterial({color: 0xFF6347});
-const torus = new THREE.Mesh(
-  new THREE.TorusGeometry(10, 4, 16, 1000),
-  new THREE.MeshStandardMaterial({
-    map: ringTexture,
-    normalMap: ringNormTexture
-  })
-);
-torus.scale.set(1, 1, .05);
-torus.rotateX(4 / 9 * Math.PI);
-scene.add(torus);
-
-const marsTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_unwrapped.jpg');
-const marsNormalTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/mars_norm.jpg');
-const mars = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: marsTexture,
-    normalMap: marsNormalTexture
-  })
-);
+const loader = new GLTFLoader();
+const mars = new THREE.Group();
 scene.add(mars);
+
+loader.load('public/images/the_moon.glb', (gltf) => {
+  const moon = gltf.scene;
+
+  moon.scale.set(8, 8, 8);
+  mars.add(moon);
+});
 
 const pointLight = new THREE.PointLight(0xFFFFFF, 100);
 pointLight.position.set(5, 5, 10);
@@ -92,12 +76,15 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 // Array(200).fill().forEach(addStar);
 
-const loader = new GLTFLoader();
+const stars = [];
+
 function addStar() {
   // Load your star model
-  loader.load(
-    'https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/star2.glb', // Replace with the actual path to your model file
-    function (gltf) {
+  loader.load('public/images/star3.glb', (gltf) => {
+
+  // loader.load(
+  //   'https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/star3.glb', // Replace with the actual path to your model file
+  //   function (gltf) {
       const star = gltf.scene;
 
       // Randomize position
@@ -107,23 +94,27 @@ function addStar() {
       if (Math.abs(x) > area && Math.abs(y) > area) {
         star.position.set(x, y, z);
 
-        const randomScale = THREE.MathUtils.randFloat(0.05, 0.225);
+        const randomScale = THREE.MathUtils.randFloat(0.05, 0.5);
         star.scale.set(randomScale, randomScale, randomScale);
 
         star.traverse((child) => {
           if (child.isMesh) {
             child.material = new THREE.MeshStandardMaterial({
-              color: 0xffcc00, // Yellowish color (not too bright)
+              // color: 0xffcc00, // Yellowish color (not too bright)
               emissive: 0xcccc00, // Subtle emissive (glow) effect (yellowish glow)
-              emissiveIntensity: 0.1, // Reduced intensity for a more subtle glow
-              roughness: 0.5, // Some roughness to add shading to the surface
-              metalness: 0, // No metallic reflection
+              emissiveIntensity: 0.5, // Reduced intensity for a more subtle glow
+              // roughness: 0.5, // Some roughness to add shading to the surface
+              // metalness: 0, // No metallic reflection
             });
           }
         });
 
         // Add the star model to the scene
         scene.add(star);
+        stars.push({
+          object: star,
+          rotationSpeed: THREE.MathUtils.randFloat(0.001, 0.01)
+        });
       }
     },
     undefined,
@@ -134,22 +125,58 @@ function addStar() {
 }
 Array(500).fill().forEach(addStar);
 
-const mtlLoader = new MTLLoader();
-const objLoader = new OBJLoader();
+// const mtlLoader = new MTLLoader();
+// const objLoader = new OBJLoader();
 
-let ship;
-mtlLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/shuttle.mtl', function (materials) {
-  materials.preload();
-  objLoader.setMaterials(materials);
-  objLoader.load('https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/shuttle.obj', function (object) {
-    object.position.z = 10;
-    object.position.y = 1;
-    object.rotateX(-1 / 12 * Math.PI);
-    object.rotateY(1 / 12 * Math.PI);
-    // object.rotateZ(-1/10*Math.PI);
-    ship = object;
-    scene.add(ship);
+// let ship;
+// mtlLoader.load('public/images/shuttle.mtl', function (materials) {
+//   materials.preload();
+//   objLoader.setMaterials(materials);
+//   objLoader.load('public/images/shuttle.obj', function (object) {
+//     object.position.z = 10;
+//     object.position.y = 1;
+//     object.rotateX(-1 / 12 * Math.PI);
+//     object.rotateY(1 / 12 * Math.PI);
+//     // object.rotateZ(-1/10*Math.PI);
+//     ship = object;
+//     scene.add(ship);
+//   });
+// });
+
+let shuttle;
+loader.load('public/images/space_shuttle.glb', (gltf) => {
+  shuttle = new THREE.Group();
+  const shuttleModel = gltf.scene;
+
+  shuttle.position.set(0, 1, 10);
+  shuttle.scale.set(.04, .04, .04);
+
+  shuttleModel.rotateX(-0.2618);
+  shuttleModel.rotateY(1.6);
+  shuttle.userData.baseRotationZ = shuttle.rotation.z;
+  shuttle.add(shuttleModel);
+
+  scene.add(shuttle);
+});
+
+const clock = new THREE.Clock();
+const mixers = [];
+loader.load('public/images/saturn_planet.glb', (gltf) => {
+  const saturn = gltf.scene;
+
+  saturn.position.set(17, 10, 54);
+  saturn.scale.set(5, 5, 5);
+  saturn.rotateX(0.1);
+  saturn.rotateZ(0.3);
+
+  scene.add(saturn);
+
+  const mixer = new THREE.AnimationMixer(saturn);
+  gltf.animations.forEach((clip) => {
+    mixer.clipAction(clip).play();
   });
+
+  mixers.push(mixer);
 });
 
 /* 
@@ -168,7 +195,7 @@ i really dont want to model it myself so yeah im going to keep trying
 // );
 
 let thanks;
-loader.load(Thanks,
+loader.load("public/images/thanks.glb",
   function (gltf) {
     thanks = gltf.scene;
     thanks.position.z = 54;
@@ -192,15 +219,26 @@ caleb.position.z = -8;
 caleb.position.x = 5.4;
 mars.position.z = 10;
 mars.position.setX(-8);
-torus.position.z = 10;
-torus.position.setX(-8);
+
+const moonBaseScale = 1;
+const shuttleBaseScale = 0.04;
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
+  const scrollAmount = Math.abs(t);
+  const shrinkStart = 600;
+  const shrinkDistance = 6000;
+  const shrinkProgress = THREE.MathUtils.clamp((scrollAmount - shrinkStart) / shrinkDistance, 0, 1);
+  const shrinkScale = THREE.MathUtils.lerp(1, 0.15, shrinkProgress);
+
   // mars.rotation.x += .05;
-  mars.rotation.y += .02;
-  torus.rotation.z -= 0.015;
+  mars.rotation.y += .01;
   // mars.rotation.z += .05;
+  mars.scale.setScalar(moonBaseScale * shrinkScale);
+
+  if (shuttle) {
+    shuttle.scale.setScalar(shuttleBaseScale * shrinkScale);
+  }
 
   caleb.rotation.y += .01;
   caleb.rotation.z += .01;
@@ -230,14 +268,16 @@ const minDistance = 10;
 let dir = 'r';
 let mov = 'f';
 function animateShip(ship) {
+  const baseRotationZ = ship.userData.baseRotationZ ?? ship.rotation.z;
+
   if (dir === 'r') {
     ship.rotation.z -= value;
   } else if (dir === 'l') {
     ship.rotation.z += value;
   }
-  if (ship.rotation.z <= -rotation) {
+  if (ship.rotation.z <= baseRotationZ - rotation) {
     dir = 'l';
-  } else if (ship.rotation.z >= rotation) {
+  } else if (ship.rotation.z >= baseRotationZ + rotation) {
     dir = 'r';
   }
 
@@ -256,17 +296,25 @@ function animateShip(ship) {
 function animate() {
   requestAnimationFrame(animate);
 
-  torus.rotation.z -= 0.005;
-
-  mars.rotation.y += 0.005;
+  mars.rotation.y += 0.0025;
 
   if (thanks) {
     thanks.rotation.y -= 0.005;
   }
 
-  if (ship) {
-    animateShip(ship);
+  if (shuttle) {
+    animateShip(shuttle);
   }
+
+  stars.forEach(({ object, rotationSpeed }) => {
+    object.rotation.y += rotationSpeed;
+  });
+
+  const delta = clock.getDelta();
+
+  mixers.forEach((mixer) => {
+    mixer.update(delta);
+  });
 
   controls.update();
 

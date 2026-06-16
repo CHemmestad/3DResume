@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Large local model exports
+public/images/saturn.glb
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
