@@ -6,6 +6,8 @@ import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 // import Thanks from '/public/images/thanks.glb';
 
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({
@@ -18,7 +20,7 @@ camera.position.setZ(1);
 camera.position.setY(0);
 camera.position.setX(0);
 
-const spaceTexture = new THREE.TextureLoader().load('public/images/earth.jpg');
+const spaceTexture = new THREE.TextureLoader().load(assetPath('images/earth.jpg'));
 const backgroundGeometry = new THREE.PlaneGeometry(370, 200);
 const backgroundMaterial = new THREE.MeshBasicMaterial({
   map: spaceTexture,
@@ -31,7 +33,7 @@ backgroundMesh.position.x = -20;
 backgroundMesh.position.y = -20;
 scene.add(backgroundMesh);
 
-const calebTexture = new THREE.TextureLoader().load('public/images/caleb.jpg');
+const calebTexture = new THREE.TextureLoader().load(assetPath('images/caleb.jpg'));
 const caleb = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
   new THREE.MeshBasicMaterial({ map: calebTexture })
@@ -42,7 +44,7 @@ const loader = new GLTFLoader();
 const mars = new THREE.Group();
 scene.add(mars);
 
-loader.load('public/images/the_moon.glb', (gltf) => {
+loader.load(assetPath('images/the_moon.glb'), (gltf) => {
   const moon = gltf.scene;
 
   moon.scale.set(8, 8, 8);
@@ -80,7 +82,7 @@ const stars = [];
 
 function addStar() {
   // Load your star model
-  loader.load('public/images/star3.glb', (gltf) => {
+  loader.load(assetPath('images/star3.glb'), (gltf) => {
 
   // loader.load(
   //   'https://raw.githubusercontent.com/CHemmestad/3DResume/main/public/images/star3.glb', // Replace with the actual path to your model file
@@ -144,7 +146,7 @@ Array(500).fill().forEach(addStar);
 // });
 
 let shuttle;
-loader.load('public/images/space_shuttle.glb', (gltf) => {
+loader.load(assetPath('images/space_shuttle.glb'), (gltf) => {
   shuttle = new THREE.Group();
   const shuttleModel = gltf.scene;
 
@@ -161,7 +163,7 @@ loader.load('public/images/space_shuttle.glb', (gltf) => {
 
 const clock = new THREE.Clock();
 const mixers = [];
-loader.load('public/images/saturn_planet.glb', (gltf) => {
+loader.load(assetPath('images/saturn_planet.glb'), (gltf) => {
   const saturn = gltf.scene;
 
   saturn.position.set(17, 10, 54);
@@ -195,7 +197,7 @@ i really dont want to model it myself so yeah im going to keep trying
 // );
 
 let thanks;
-loader.load("public/images/thanks.glb",
+loader.load(assetPath('images/thanks.glb'),
   function (gltf) {
     thanks = gltf.scene;
     thanks.position.z = 54;
