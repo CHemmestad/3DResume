@@ -10,9 +10,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
   <title>Caleb's Portfolio</title>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     .transparent {
       background-color: rgba(0, 0, 0, 0);
     }
@@ -101,30 +106,114 @@
       margin: 10px;
       margin-bottom: 0px;
       margin-top: 75px;
+      scroll-margin-top: 90px;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      max-width: calc(100vw - 24px);
+      padding: 6px;
+      border: 2px solid rgba(136, 160, 223, 0.612);
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.58);
+      backdrop-filter: blur(8px);
+    }
+
+    .top-nav-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .top-nav-link {
+      display: block;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      text-shadow:
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black,
+        1px 1px 0 black;
+      white-space: nowrap;
+    }
+
+    .top-nav-link:hover,
+    .top-nav-link:focus {
+      color: white;
+      background-color: rgba(136, 160, 223, 0.28);
+    }
+
+    .modal-backdrop {
+      z-index: 1055;
+    }
+
+    .modal {
+      z-index: 1060;
+      color: #212529;
+    }
+
+    .turnstile-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+      min-height: 65px;
+    }
+
+    @media (max-width: 575px) {
+      .top-nav {
+        top: 8px;
+        width: calc(100vw - 16px);
+      }
+
+      .top-nav-link {
+        padding: 5px 8px;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <canvas id="bg"></canvas>
+  <nav class="top-nav" aria-label="Section navigation">
+    <ul class="top-nav-list">
+      <li><a class="top-nav-link" href="#about">About</a></li>
+      <li><a class="top-nav-link" href="#projects">Projects</a></li>
+      <li><a class="top-nav-link" href="#work">Work</a></li>
+      <li><a class="top-nav-link" href="#contact">Contact</a></li>
+      <li><a class="top-nav-link" href="#message">Message</a></li>
+    </ul>
+  </nav>
 
   <main>
     <div>
       <header>
         <div style="display: flex; justify-content: center; align-items: center;">
-          <div class="outlined" style="font-size: clamp(2rem, 5vw, 5rem);">Caleb's Portfolio</div>
+          <div class="outlined" style="font-size: clamp(2rem, 5vw, 5rem); margin-top: 8vh;">Caleb's Portfolio</div>
         </div>
         <!-- <div style="display: flex; justify-content: center; align-items: center;">
           <div class="outlined" style="font-size: clamp(1rem, 1vw, 1rem);">(This is a work in progress)</div>
         </div> -->
         <div>
-          <h2 class="title centered" style="max-width: 50%; margin-top: 10px;">About Me</h2>
+          <h2 id="about" class="title centered" style="max-width: 50%; margin-top: 10px;">About Me</h2>
           <div class="about custom">
             <div class="centered">
               <p>Welcome to my portfolio!</p>
             </div>
-            <p>I am currently a senior at Iowa State University majoring in Software Engineering and minoring in Cyber
-              Security. I have been programming since 2019, starting with C, which helped me build a strong foundation in
+            <p>I just recently graduated from Iowa State University with a major in Software Engineering and a minor in
+              Cybersecurity Engineering. I have been programming since 2019, starting with C, which helped me build a strong foundation in
               problem solving, debugging, and understanding how software works at a lower level. I enjoy building full stack
               applications, working with embedded systems, and turning complex technical problems into usable projects.<br><br>
               I am especially interested in software development roles where I can keep improving as an engineer, contribute
@@ -137,7 +226,7 @@
         </div>
       </header>
 
-      <h2 class="title centered">My Projects</h2>
+      <h2 id="projects" class="title centered">My Projects</h2>
       <div class="card text-center custom" style="border: 0px solid; margin-top: 0px; padding-top: 0px;">
         <div class="card-body transparent" style="margin-top: 0px; padding-top: 0px;">
           <ul class="list-group list-group-flush transparent" style=" margin-top: 0px; padding-top: 0px;">
@@ -692,63 +781,47 @@
         </div>
       </div>
 
-      <h2 class="title centered">Work History</h2>
+      <h2 id="work" class="title centered">Work History</h2>
 
-      <h2 class="title centered">Contact Info</h2>
+      <h2 id="contact" class="title centered">Contact Info</h2>
 
-      <h2 class="title centered">Message Me</h2>
+      <h2 id="message" class="title centered">Message Me</h2>
       <div class="centered">
         <div class="custom about">
           <div class="form h-100 contact-wrap p-5">
-            <form class="mb-5" method="post" id="contactForm" name="contactForm" novalidate="novalidate">
+            <form class="mb-5" id="contactForm" name="contactForm">
               <div class="row">
                 <div class="col-md-6 form-group mb-3">
-                  <label for="" class="col-form-label">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                  <label for="name" class="col-form-label">Name</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
                 </div>
                 <div class="col-md-6 form-group mb-3">
-                  <label for="" class="col-form-label">Email</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your email">
+                  <label for="email" class="col-form-label">Email</label>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your email" required>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
-                  <label for="budget" class="col-form-label">Subject</label>
+                  <label for="subject" class="col-form-label">Subject</label>
                   <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
                 </div>
               </div>
               <div class="row mb-5">
                 <div class="col-md-12 form-group mb-3">
-                  <label for="message" class="col-form-label">Message</label>
-                  <textarea class="form-control" name="message" id="message" cols="30" rows="4"
-                    placeholder="Message"></textarea>
+                  <label for="contactMessage" class="col-form-label">Message</label>
+                  <textarea class="form-control" name="message" id="contactMessage" cols="30" rows="4"
+                    placeholder="Message" required></textarea>
                 </div>
+              </div>
+              <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="display: none;">
+              <div class="turnstile-wrap">
+                <div id="contactTurnstile"></div>
               </div>
               <div class="row justify-content-center">
                 <div class="col-md-5 form-group text-center">
-                  <!-- <input type="submit" value="Send Message" class="btn btn-block btn-primary rounded-0 py-2 px-4">
-                  <span class="submitting"></span> -->
-                  <button type="button" class="btn btn-primary disabled" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                  <button type="submit" class="btn btn-primary" id="contactSubmit">
                     Send Message
                   </button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          Something
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </form>
@@ -762,6 +835,24 @@
 
     </div>
   </main>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Message Status</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="contactModalBody">
+          Sending message...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="/src/main.js"></script>
 </body>

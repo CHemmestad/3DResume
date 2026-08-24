@@ -6,6 +6,117 @@ import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 // import Thanks from '/public/images/thanks.glb';
 
+const contactForm = document.querySelector('#contactForm');
+const contactSubmit = document.querySelector('#contactSubmit');
+const contactModalBody = document.querySelector('#contactModalBody');
+const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || '/api/contact';
+const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+const turnstileAction = 'contact';
+let contactTurnstileWidgetId = null;
+
+renderContactTurnstile();
+const turnstileRenderTimer = window.setInterval(() => {
+  if (contactTurnstileWidgetId !== null || window.turnstile) {
+    window.clearInterval(turnstileRenderTimer);
+  }
+
+  renderContactTurnstile();
+}, 250);
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.classList.add('was-validated');
+      return;
+    }
+
+    const formData = new FormData(contactForm);
+    const turnstileToken = formData.get('cf-turnstile-response')?.trim();
+
+    if (!turnstileToken) {
+      setContactStatus('Please complete the verification check before sending.');
+      showContactModal();
+      return;
+    }
+
+    const payload = {
+      name: formData.get('name')?.trim(),
+      email: formData.get('email')?.trim(),
+      subject: formData.get('subject')?.trim(),
+      message: formData.get('message')?.trim(),
+      website: formData.get('website')?.trim(),
+      turnstileToken,
+    };
+
+    setContactStatus('Sending message...');
+    setContactSubmitDisabled(true);
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Message failed to send.');
+      }
+
+      contactForm.reset();
+      contactForm.classList.remove('was-validated');
+      setContactStatus('Message sent. Thanks for reaching out!');
+    } catch (error) {
+      setContactStatus(error.message || 'Message failed to send. Please try again later.');
+    } finally {
+      setContactSubmitDisabled(false);
+      resetTurnstile();
+      showContactModal();
+    }
+  });
+}
+
+function renderContactTurnstile() {
+  const container = document.querySelector('#contactTurnstile');
+  if (!container || !window.turnstile || !turnstileSiteKey || contactTurnstileWidgetId !== null) {
+    return;
+  }
+
+  contactTurnstileWidgetId = window.turnstile.render(container, {
+    sitekey: turnstileSiteKey,
+    action: turnstileAction,
+  });
+}
+
+function setContactStatus(message) {
+  if (contactModalBody) {
+    contactModalBody.textContent = message;
+  }
+}
+
+function setContactSubmitDisabled(isDisabled) {
+  if (contactSubmit) {
+    contactSubmit.disabled = isDisabled;
+  }
+}
+
+function showContactModal() {
+  const modalElement = document.querySelector('#exampleModal');
+  if (modalElement && window.bootstrap) {
+    window.bootstrap.Modal.getOrCreateInstance(modalElement).show();
+  }
+}
+
+function resetTurnstile() {
+  if (window.turnstile && contactTurnstileWidgetId !== null) {
+    window.turnstile.reset(contactTurnstileWidgetId);
+  }
+}
+
 const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
 
 const scene = new THREE.Scene();

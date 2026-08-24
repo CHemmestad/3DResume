@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://CHemmestad.github.io/3DResume/",
+  "homepage": "https://calebhemmestad.com/",
   "type": "module",
   "scripts": {
     "dev": "vite",
