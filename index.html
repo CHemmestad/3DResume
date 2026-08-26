@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
+  <link rel="shortcut icon" href="/favicon.ico?v=2" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -46,6 +47,42 @@
       border-radius: 10px;
     }
 
+    .section-card {
+      width: min(90vw, 760px);
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .wide-section-card {
+      width: calc(100vw - 40px);
+      max-width: none;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .project-list-wrap {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .project-list-wrap .card-body,
+    .project-list {
+      margin: 0;
+      padding: 0;
+    }
+
+    .project-list .list-group-item {
+      margin: 0;
+      padding: 0;
+    }
+
+    .project-list .section-card {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     img {
       max-height: 500px;
       object-fit: contain;
@@ -57,8 +94,35 @@
       background-color: black;
     }
 
+    .video-frame {
+      width: min(100%, 888px);
+      max-height: 500px;
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      background-color: black;
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
     .list-group-item {
       border-bottom: solid rgba(136, 160, 223, 0.612);
+    }
+
+    .project-list .list-group-item {
+      position: relative;
+      border-bottom: 0;
+    }
+
+    .project-list .list-group-item:not(:last-child) {
+      background-image: linear-gradient(to right, rgba(136, 160, 223, 0), rgba(136, 160, 223, 0.612), rgba(136, 160, 223, 0));
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: 100% 1px;
     }
 
     .skills {
@@ -93,6 +157,59 @@
       min-height: 450px;
       border: 2px solid rgba(136, 160, 223, 0.612);
       background-color: rgba(0, 0, 0, 0.473);
+    }
+
+    .contact-panel {
+      min-height: 450px;
+      border: 2px solid rgba(136, 160, 223, 0.612);
+      background-color: rgba(190, 190, 190, 0.1);
+    }
+
+    .contact-info-text {
+      margin: 0;
+      font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+    }
+
+    .contact-info-card {
+      padding: 18px;
+    }
+
+    .contact-info-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 130px;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 8px;
+    }
+
+    .contact-info-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-info-row .btn {
+      width: 100%;
+    }
+
+    .work-card {
+      padding: 18px;
+    }
+
+    .work-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px 18px;
+      margin-bottom: 10px;
+    }
+
+    .work-title,
+    .work-dates {
+      margin: 0;
+    }
+
+    .work-company {
+      margin: 0 0 12px;
+      opacity: 0.9;
     }
 
     .title {
@@ -181,6 +298,35 @@
         padding: 5px 8px;
         font-size: 0.85rem;
       }
+
+      .contact-wrap {
+        padding: 1.25rem !important;
+      }
+
+      .contact-info-card {
+        width: calc(100vw - 32px);
+      }
+
+      .section-card {
+        width: calc(100vw - 32px);
+        margin-left: 16px;
+        margin-right: 16px;
+      }
+
+      .wide-section-card {
+        width: calc(100vw - 32px);
+        margin-left: 16px;
+        margin-right: 16px;
+      }
+
+      .contact-info-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .contact-info-row .btn {
+        width: fit-content;
+      }
     }
   </style>
 </head>
@@ -216,22 +362,29 @@
               Cybersecurity Engineering. I have been programming since 2019, starting with C, which helped me build a strong foundation in
               problem solving, debugging, and understanding how software works at a lower level. I enjoy building full stack
               applications, working with embedded systems, and turning complex technical problems into usable projects.<br><br>
+              I am based in Ames, Iowa and looking for entry-level software engineering roles, especially in full-stack 
+              development, embedded systems, or cybersecurity-adjacent work, where I can apply my experience with Java, 
+              JavaScript, C/C++, Python, React, Node.js, Spring Boot, SQL, and Linux-based systems. I am also interested in 
+              contract work where I can help build, improve, or troubleshoot practical software projects.<br><br>
               I am especially interested in software development roles where I can keep improving as an engineer, contribute
               to real world systems, and work on projects that require both technical depth and practical design decisions.<br><br>
-              Last Updated: June 15, 2026<br>
-              ISU Final GPA: 3.25<br>
-              ICCC Final GPA: 3.67<br>
-              Graduation Date: Spring 2026</p>
+              Last Updated: August 26, 2026<br>
+              Degree: B.S. Software Engineering, Minor in Cybersecurity Engineering<br>
+              Combined GPA: 3.42<br>
+              Graduation: Spring 2026</p>
+            <div class="centered">
+              <a href="/images/diploma.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Diploma</a>
+            </div>
           </div>
         </div>
       </header>
 
       <h2 id="projects" class="title centered">My Projects</h2>
-      <div class="card text-center custom" style="border: 0px solid; margin-top: 0px; padding-top: 0px;">
-        <div class="card-body transparent" style="margin-top: 0px; padding-top: 0px;">
-          <ul class="list-group list-group-flush transparent" style=" margin-top: 0px; padding-top: 0px;">
-            <li class="list-group-item transparent" style="margin-top: 0px; padding-top: 0px;">
-              <div class="card mb-3 custom custom-list-item">
+      <div class="card text-center custom project-list-wrap">
+        <div class="card-body transparent">
+          <ul class="list-group list-group-flush transparent project-list">
+            <li class="list-group-item transparent">
+              <div class="card mb-3 custom custom-list-item section-card wide-section-card">
                 <div id="carousel3DPrintedCyBot" class="carousel slide">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carousel3DPrintedCyBot" data-bs-slide-to="0" class="active"
@@ -252,11 +405,19 @@
                       aria-label="Slide 8"></button>
                     <button type="button" data-bs-target="#carousel3DPrintedCyBot" data-bs-slide-to="8"
                       aria-label="Slide 9"></button>
+                    <button type="button" data-bs-target="#carousel3DPrintedCyBot" data-bs-slide-to="9"
+                      aria-label="Slide 10"></button>
                   </div>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <video class="d-block w-100" controls preload="metadata">
                         <source src="/images/3DPrintedCyBot/CyBotNeo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <div class="carousel-item">
+                      <video class="d-block w-100" controls preload="metadata">
+                        <source src="/images/3DPrintedCyBot/CyBotMoving.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                       </video>
                     </div>
@@ -316,13 +477,15 @@
                       <span class="badge rounded-pill text-bg-primary">Computer Vision</span>
                       <span class="badge rounded-pill text-bg-primary">BFS Pathfinding</span>
                       <span class="badge rounded-pill text-bg-primary">3D Printing</span>
+                      <span class="badge rounded-pill text-bg-primary">Blender</span>
+                      <span class="badge rounded-pill text-bg-primary">Embedded Systems</span>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
             <li class="list-group-item transparent">
-              <div class="card mb-3 custom custom-list-item">
+              <div class="card mb-3 custom custom-list-item section-card wide-section-card">
                 <div id="carouselMySTEMGrowth" class="carousel slide">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselMySTEMGrowth" data-bs-slide-to="0" class="active"
@@ -362,10 +525,11 @@
                     <div class="skills">
                       <h5 class="card-title">Primary Skills</h5>
                       <span class="badge rounded-pill text-bg-primary">React</span>
-                      <span class="badge rounded-pill text-bg-primary">Node</span>
+                      <span class="badge rounded-pill text-bg-primary">Node.js</span>
                       <span class="badge rounded-pill text-bg-primary">Cloud Deployment</span>
                       <span class="badge rounded-pill text-bg-primary">Survey Design</span>
-                      <span class="badge rounded-pill text-bg-primary">Reporting</span>
+                      <span class="badge rounded-pill text-bg-primary">Data Reporting</span>
+                      <span class="badge rounded-pill text-bg-primary">Full-Stack Development</span>
                     </div>
                   </div>
                   <a href="https://mystemgrowth-558f2.ondigitalocean.app/" target="_blank"
@@ -374,7 +538,7 @@
               </div>
             </li>
             <li class="list-group-item transparent" style="margin-top: 0px; padding-top: 0px;">
-              <div class="card mb-3 custom custom-list-item">
+              <div class="card mb-3 custom custom-list-item section-card wide-section-card">
                 <!-- <img src="/images/chess.png" class="card-img-top" alt="..."> -->
                 <div id="carouselExampleCaptions" class="carousel slide">
                   <div class="carousel-indicators">
@@ -459,8 +623,11 @@
                 <div class="card-body">
                   <div class="centered">
                     <h3 class="card-title">Chess Game</h3>
-                    <p class="card-text">A fully functional chess game with swapped King and Queen (oops.) in Java
-                      using the Spring Framework.<br>
+                    <p class="card-text">Built a Java chess application with object-oriented piece logic, move
+                      validation, check and checkmate detection, castling support, alternate board styles, in-game
+                      visual feedback for legal moves, and a computer opponent so the game can be played solo. The
+                      project focused on translating a complex rule set into maintainable classes, UML-backed design,
+                      and a playable user interface.<br>
                       Class: Sofware Design<br>
                       School: Iowa Central Community College<br>
                       Grade: A
@@ -471,6 +638,7 @@
                       <span class="badge rounded-pill text-bg-primary">Spring</span>
                       <span class="badge rounded-pill text-bg-primary">Software Design</span>
                       <span class="badge rounded-pill text-bg-primary">UML</span>
+                      <span class="badge rounded-pill text-bg-primary">Object-Oriented Programming</span>
                     </div>
                   </div>
                   <a href="https://github.com/CHemmestad/SemesterProject-Chess-SoftwareDesign-FINAL/tree/main/Semester%20Project%20-%20Chess"
@@ -479,8 +647,7 @@
               </div>
             </li>
             <li class="list-group-item transparent">
-              <div class="card mb-3 custom custom-list-item">
-                <!-- <img src="/images/earth.jpg" class="card-img-top" alt="..."> -->
+              <div class="card mb-3 custom custom-list-item section-card wide-section-card">
                 <div id="carouselExampleCaptions2" class="carousel slide">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active"
@@ -488,11 +655,7 @@
                   </div>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="/images/earth.jpg" class="d-block w-100" alt="...">
-                      <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                      </div>
+                      <img src="/images/Create2/create%202.jpg" class="d-block w-100" alt="iRobot Create 2 robot project">
                     </div>
                   </div>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions2"
@@ -508,13 +671,13 @@
                 </div>
                 <div class="card-body">
                   <div class="centered">
-                    <h3 class="card-title">Remote Controlled Roomba with Mapping</h3>
+                    <h3 class="card-title">Remote Controlled iRobot Create 2 with Mapping</h3>
                     <p class="card-text">
                       Two separate programs were written for this project: one in C to program the 
-                      Roomba's functionalities, enabling the IR and sonar sensors and controlling its 
-                      movement. This software also allows the Roomba to be controlled remotely via 
+                      iRobot Create 2's functionalities, enabling the IR and sonar sensors and controlling its 
+                      movement. This software also allows the iRobot Create 2 to be controlled remotely via 
                       keyboard using a WebSocket. Another program, written in Python, displays the 
-                      information received by the Roomba to help the user navigate obstacles without 
+                      information received by the iRobot Create 2 to help the user navigate obstacles without 
                       looking at the course.<br>
                       Class: Embedded Systems I<br>
                       School: Iowa State University<br>
@@ -524,8 +687,10 @@
                       <h5 class="card-title">Primary Skills</h5>
                       <span class="badge rounded-pill text-bg-primary">C</span>
                       <span class="badge rounded-pill text-bg-primary">Python</span>
-                      <span class="badge rounded-pill text-bg-primary">Websocket</span>
+                      <span class="badge rounded-pill text-bg-primary">WebSockets</span>
                       <span class="badge rounded-pill text-bg-primary">Bit Manipulation</span>
+                      <span class="badge rounded-pill text-bg-primary">Sensor Integration</span>
+                      <span class="badge rounded-pill text-bg-primary">Serial Communication</span>
                     </div>
                   </div>
                   <a href="https://github.com/CHemmestad/CPRE288_FinalLabProject/tree/main/FinalCode" target="_blank"
@@ -534,7 +699,7 @@
               </div>
             </li>
             <li class="list-group-item transparent">
-              <div class="card mb-3 custom custom-list-item">
+              <div class="card mb-3 custom custom-list-item section-card wide-section-card">
                 <!-- <img src="/images/earth.jpg" class="card-img-top" alt="..."> -->
                 <div id="carouselExampleCaptions3" class="carousel slide">
                   <div class="carousel-indicators">
@@ -543,10 +708,11 @@
                   </div>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="/images/earth.jpg" class="d-block w-100" alt="...">
-                      <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+                      <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/BhPB-PRNmIM"
+                          title="Bargain Buddy Android app demo"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowfullscreen></iframe>
                       </div>
                     </div>
                   </div>
@@ -581,32 +747,55 @@
                       <span class="badge rounded-pill text-bg-primary">Spring Boot</span>
                       <span class="badge rounded-pill text-bg-primary">MySQL</span>
                       <span class="badge rounded-pill text-bg-primary">Postman</span>
-                      <span class="badge rounded-pill text-bg-primary">Websocket</span>
+                      <span class="badge rounded-pill text-bg-primary">WebSockets</span>
                       <span class="badge rounded-pill text-bg-primary">GitLab</span>
-                      <span class="badge rounded-pill text-bg-primary">Runners</span>
+                      <span class="badge rounded-pill text-bg-primary">GitLab CI/CD</span>
                       <span class="badge rounded-pill text-bg-primary">IntelliJ</span>
+                      <span class="badge rounded-pill text-bg-primary">Android Studio</span>
                       <span class="badge rounded-pill text-bg-primary">Project Management</span>
                       <span class="badge rounded-pill text-bg-primary">Software Design</span>
+                      <span class="badge rounded-pill text-bg-primary">REST API Testing</span>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
             <li class="list-group-item transparent">
-              <div class="card mb-3 custom custom-list-item">
+              <div class="card mb-3 custom custom-list-item section-card wide-section-card">
                 <!-- <img src="/images/earth.jpg" class="card-img-top" alt="..."> -->
                 <div id="carouselExampleCaptions4" class="carousel slide">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="2"
+                      aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="3"
+                      aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="4"
+                      aria-label="Slide 5"></button>
                   </div>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="/images/earth.jpg" class="d-block w-100" alt="...">
-                      <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                      </div>
+                      <img src="/images/MIPS/IMG_3340.jpeg" class="d-block w-100"
+                        alt="Pipelined MIPS processor project image 1">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/images/MIPS/IMG_3285%202.jpeg" class="d-block w-100"
+                        alt="Pipelined MIPS processor project image 2">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/images/MIPS/IMG_3325.jpeg" class="d-block w-100"
+                        alt="Pipelined MIPS processor project image 3">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/images/MIPS/IMG_9CF0E91F-9244-4902-A447-CA19ABA64751.JPEG" class="d-block w-100"
+                        alt="Pipelined MIPS processor project image 4">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/images/MIPS/IMG_D0881BAF-988A-48E5-A61E-D36C9F2D00BB.jpg" class="d-block w-100"
+                        alt="Pipelined MIPS processor project image 5">
                     </div>
                   </div>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions4"
@@ -641,6 +830,7 @@
                       <span class="badge rounded-pill text-bg-primary">Binary Arithmetic</span>
                       <span class="badge rounded-pill text-bg-primary">Assembly</span>
                       <span class="badge rounded-pill text-bg-primary">Computer Architecture</span>
+                      <span class="badge rounded-pill text-bg-primary">Digital Logic Design</span>
                     </div>
                   </div>
                   <a href="https://github.com/CHemmestad/CPRE381_MIPSProcessor" target="_blank"
@@ -649,9 +839,9 @@
               </div>
             </li>
             <li class="list-group-item transparent">
-              <div class="card mb-3 custom custom-list-item">
+              <div class="card mb-3 custom custom-list-item section-card wide-section-card">
                 <!-- <img src="/images/earth.jpg" class="card-img-top" alt="..."> -->
-                <div id="carouselExampleCaptions5" class="carousel slide">
+                <!-- <div id="carouselExampleCaptions5" class="carousel slide">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions5" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
@@ -675,52 +865,69 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                   </button>
-                </div>
+                </div> -->
                 <div class="card-body">
                   <div class="centered">
                     <h3 class="card-title">Pentesting Final Project</h3>
                     <p class="card-text">
-                      Hacked.<br>
+                      Completed an authorized penetration testing and incident response project in a simulated 
+                      hospital network. Gained access to intentionally vulnerable Linux and web systems, documented 
+                      exposed sensitive files and weak service configurations, and explained the potential impact 
+                      to confidentiality, integrity, and availability. Used network traffic analysis, service 
+                      enumeration, credential testing, web shell investigation, FTP/Telnet review, and Linux 
+                      privilege analysis to identify risks. Wrote remediation guidance for each issue, including 
+                      disabling unsafe services, removing backdoor accounts, improving password controls, limiting 
+                      exposed functionality, and hardening file permissions.<br>
                       Class: Cyber Security Concepts and Tools<br>
                       School: Iowa State University<br>
                       Grade: B
                     </p>
                     <div class="skills">
                       <h5 class="card-title">Primary Skills</h5>
-                      <span class="badge rounded-pill text-bg-primary">IP Addresses</span>
-                      <span class="badge rounded-pill text-bg-primary">Port Forwarding</span>
-                      <span class="badge rounded-pill text-bg-primary">Cyber Security Threats</span>
+                      <span class="badge rounded-pill text-bg-primary">Network Enumeration</span>
+                      <span class="badge rounded-pill text-bg-primary">Port Scanning</span>
+                      <span class="badge rounded-pill text-bg-primary">Threat Analysis</span>
                       <span class="badge rounded-pill text-bg-primary">PHP</span>
-                      <span class="badge rounded-pill text-bg-primary">Wire Shark</span>
+                      <span class="badge rounded-pill text-bg-primary">Wireshark</span>
                       <span class="badge rounded-pill text-bg-primary">Wazuh</span>
                       <span class="badge rounded-pill text-bg-primary">VMware</span>
                       <span class="badge rounded-pill text-bg-primary">pfSense</span>
                       <span class="badge rounded-pill text-bg-primary">Reverse Shell</span>
-                      <span class="badge rounded-pill text-bg-primary">Vulnerabilities</span>
-                      <span class="badge rounded-pill text-bg-primary">nMap</span>
+                      <span class="badge rounded-pill text-bg-primary">Vulnerability Assessment</span>
+                      <span class="badge rounded-pill text-bg-primary">Nmap</span>
                       <span class="badge rounded-pill text-bg-primary">Kali</span>
-                      <span class="badge rounded-pill text-bg-primary">John the Rpper</span>
+                      <span class="badge rounded-pill text-bg-primary">John the Ripper</span>
                       <span class="badge rounded-pill text-bg-primary">Hashcat</span>
                       <span class="badge rounded-pill text-bg-primary">Privilege Escalation</span>
                       <span class="badge rounded-pill text-bg-primary">Metasploit</span>
-                      <span class="badge rounded-pill text-bg-primary">Pentesting Reports and Contracts</span>
+                      <span class="badge rounded-pill text-bg-primary">Penetration Testing Reports</span>
+                      <span class="badge rounded-pill text-bg-primary">Incident Response</span>
+                      <span class="badge rounded-pill text-bg-primary">Linux Hardening</span>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
             <li class="list-group-item transparent">
-              <div class="card mb-3 custom custom-list-item">
+              <div class="card mb-3 custom custom-list-item section-card wide-section-card">
                 <!-- <img src="/images/earth.jpg" class="card-img-top" alt="..."> -->
                 <div id="carouselExampleCaptions6" class="carousel slide">
                   <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions6" data-bs-slide-to="0" class="active"
                       aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    <button type="button" data-bs-target="#carouselExampleCaptions6" data-bs-slide-to="1"
                       aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions6" data-bs-slide-to="2"
+                      aria-label="Slide 3"></button>
                   </div>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
+                      <img src="/images/website/Screenshot%202026-08-25%20at%207.07.43%E2%80%AFPM.png"
+                        class="d-block w-100" alt="Movie review website screenshot">
+                      <div class="carousel-caption d-none d-md-block">
+                      </div>
+                    </div>
+                    <div class="carousel-item">
                       <img src="/images/website/website1.png" class="d-block w-100" alt="...">
                       <div class="carousel-caption d-none d-md-block">
                       </div>
@@ -761,13 +968,14 @@
                       <h5 class="card-title">Primary Skills</h5>
                       <span class="badge rounded-pill text-bg-primary">HTML</span>
                       <span class="badge rounded-pill text-bg-primary">CSS</span>
-                      <span class="badge rounded-pill text-bg-primary">JS</span>
+                      <span class="badge rounded-pill text-bg-primary">JavaScript</span>
                       <span class="badge rounded-pill text-bg-primary">React</span>
-                      <span class="badge rounded-pill text-bg-primary">Node</span>
+                      <span class="badge rounded-pill text-bg-primary">Node.js</span>
                       <span class="badge rounded-pill text-bg-primary">MySQL</span>
                       <span class="badge rounded-pill text-bg-primary">MongoDB</span>
                       <span class="badge rounded-pill text-bg-primary">Bootstrap</span>
-                      <span class="badge rounded-pill text-bg-primary">Hooks</span>
+                      <span class="badge rounded-pill text-bg-primary">React Hooks</span>
+                      <span class="badge rounded-pill text-bg-primary">REST APIs</span>
                     </div>
                   </div>
                   <a href="https://github.com/CHemmestad/FinalProject319/tree/main" target="_blank"
@@ -782,12 +990,57 @@
       </div>
 
       <h2 id="work" class="title centered">Work History</h2>
+      <div class="centered">
+        <div class="card mb-3 custom custom-list-item section-card wide-section-card work-card">
+          <div class="work-header">
+            <h3 class="work-title">Job Title</h3>
+            <p class="work-dates">Start Date - End Date</p>
+          </div>
+          <p class="work-company">Company Name | Location</p>
+          <p>
+            Briefly describe the role, responsibilities, tools used, and measurable impact. Keep this focused on what
+            you built, improved, supported, or learned.
+          </p>
+          <div class="skills">
+            <h5 class="card-title">Primary Skills</h5>
+            <span class="badge rounded-pill text-bg-primary">Skill One</span>
+            <span class="badge rounded-pill text-bg-primary">Skill Two</span>
+            <span class="badge rounded-pill text-bg-primary">Skill Three</span>
+          </div>
+        </div>
+      </div>
 
       <h2 id="contact" class="title centered">Contact Info</h2>
+      <div class="centered">
+        <div class="custom custom-list-item section-card contact-info-card">
+          <div class="contact-info-row">
+            <p class="contact-info-text">Email: contact@calebhemmestad.com</p>
+            <a href="mailto:contact@calebhemmestad.com" class="btn btn-primary">Email</a>
+          </div>
+          <div class="contact-info-row">
+            <p class="contact-info-text">Location: Ames, IA</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ames%2C%20IA" target="_blank"
+              rel="noopener noreferrer" class="btn btn-primary">Map</a>
+          </div>
+          <div class="contact-info-row">
+            <p class="contact-info-text">Availability: Entry-level roles and contract work</p>
+          </div>
+          <div class="contact-info-row">
+            <p class="contact-info-text">GitHub: github.com/CHemmestad</p>
+            <a href="https://github.com/CHemmestad" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary">GitHub</a>
+          </div>
+          <div class="contact-info-row">
+            <p class="contact-info-text">LinkedIn: linkedin.com/in/caleb-hemmestad-307aa3206</p>
+            <a href="https://linkedin.com/in/caleb-hemmestad-307aa3206" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary">LinkedIn</a>
+          </div>
+        </div>
+      </div>
 
       <h2 id="message" class="title centered">Message Me</h2>
       <div class="centered">
-        <div class="custom about">
+        <div class="custom custom-list-item section-card contact-panel">
           <div class="form h-100 contact-wrap p-5">
             <form class="mb-5" id="contactForm" name="contactForm">
               <div class="row">
