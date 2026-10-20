@@ -14,6 +14,7 @@ const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
 const turnstileAction = 'contact';
 let contactTurnstileWidgetId = null;
 
+initCharacterCounts();
 renderContactTurnstile();
 const turnstileRenderTimer = window.setInterval(() => {
   if (contactTurnstileWidgetId !== null || window.turnstile) {
@@ -68,6 +69,7 @@ if (contactForm) {
       }
 
       contactForm.reset();
+      updateCharacterCounts();
       contactForm.classList.remove('was-validated');
       setContactStatus('Message sent. Thanks for reaching out!');
     } catch (error) {
@@ -115,6 +117,30 @@ function resetTurnstile() {
   if (window.turnstile && contactTurnstileWidgetId !== null) {
     window.turnstile.reset(contactTurnstileWidgetId);
   }
+}
+
+function initCharacterCounts() {
+  document.querySelectorAll('[data-character-count-for]').forEach((counter) => {
+    const field = document.querySelector(`#${counter.dataset.characterCountFor}`);
+    if (!field) {
+      return;
+    }
+
+    field.addEventListener('input', updateCharacterCounts);
+  });
+
+  updateCharacterCounts();
+}
+
+function updateCharacterCounts() {
+  document.querySelectorAll('[data-character-count-for]').forEach((counter) => {
+    const field = document.querySelector(`#${counter.dataset.characterCountFor}`);
+    if (!field) {
+      return;
+    }
+
+    counter.textContent = `${field.value.length} / ${field.maxLength}`;
+  });
 }
 
 const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;

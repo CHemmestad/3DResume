@@ -190,6 +190,29 @@
       width: 100%;
     }
 
+    .legal-card {
+      padding: 18px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .legal-card p {
+      margin-bottom: 8px;
+    }
+
+    .legal-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .character-count {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.85rem;
+      text-align: right;
+    }
+
     .work-card {
       padding: 18px;
     }
@@ -515,9 +538,10 @@
                     <h3 class="card-title">MySTEMGrowth</h3>
                     <p class="card-text">
                       Developed a survey tool for undergraduate research programs that helps coordinators measure student
-                      growth in skills, confidence, research identity, and career readiness. The platform supports
-                      customizable pre/post surveys, mentor feedback, participation tracking, and reporting for program
-                      leads while giving students a clear way to reflect on their research progress.<br>
+                      growth in skills, confidence, research identity, and career readiness. I added token-based
+                      middleware for protected routes, implemented password hashing and other security improvements, and
+                      enhanced the Program Coordinator dashboard to make participation tracking, reporting, and survey
+                      management easier to use.<br>
                       Class: Senior Design I & II<br>
                       School: Iowa State University<br>
                       Grade: A
@@ -530,6 +554,9 @@
                       <span class="badge rounded-pill text-bg-primary">Survey Design</span>
                       <span class="badge rounded-pill text-bg-primary">Data Reporting</span>
                       <span class="badge rounded-pill text-bg-primary">Full-Stack Development</span>
+                      <span class="badge rounded-pill text-bg-primary">Authentication</span>
+                      <span class="badge rounded-pill text-bg-primary">Password Hashing</span>
+                      <span class="badge rounded-pill text-bg-primary">Dashboard UI</span>
                     </div>
                   </div>
                   <a href="https://mystemgrowth-558f2.ondigitalocean.app/" target="_blank"
@@ -993,19 +1020,27 @@
       <div class="centered">
         <div class="card mb-3 custom custom-list-item section-card wide-section-card work-card">
           <div class="work-header">
-            <h3 class="work-title">Job Title</h3>
-            <p class="work-dates">Start Date - End Date</p>
+            <h3 class="work-title">Independent Contract Work</h3>
+            <p class="work-dates">September 2026 - Present</p>
           </div>
-          <p class="work-company">Company Name | Location</p>
+          <p class="work-company">DataAnnotation | Remote</p>
           <p>
-            Briefly describe the role, responsibilities, tools used, and measurable impact. Keep this focused on what
-            you built, improved, supported, or learned.
+            Evaluate AI-generated code and software solutions for functional correctness and adherence to
+            requirements. Design challenging programming prompts to expose implementation errors and assess
+            model limitations. Use Docker to recreate execution environments and reproduce failures. Compare
+            model responses and document technical findings, providing evidence-based assessments
+            of correctness, code quality, and adherence to requirements.
           </p>
           <div class="skills">
             <h5 class="card-title">Primary Skills</h5>
-            <span class="badge rounded-pill text-bg-primary">Skill One</span>
-            <span class="badge rounded-pill text-bg-primary">Skill Two</span>
-            <span class="badge rounded-pill text-bg-primary">Skill Three</span>
+            <span class="badge rounded-pill text-bg-primary">AI Model Evaluation</span>
+            <span class="badge rounded-pill text-bg-primary">Code Review</span>
+            <span class="badge rounded-pill text-bg-primary">Software Testing</span>
+            <span class="badge rounded-pill text-bg-primary">Debugging</span>
+            <span class="badge rounded-pill text-bg-primary">Prompt Design</span>
+            <span class="badge rounded-pill text-bg-primary">Failure Reproduction</span>
+            <span class="badge rounded-pill text-bg-primary">Docker</span>
+            <span class="badge rounded-pill text-bg-primary">Technical Writing</span>
           </div>
         </div>
       </div>
@@ -1046,24 +1081,31 @@
               <div class="row">
                 <div class="col-md-6 form-group mb-3">
                   <label for="name" class="col-form-label">Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name" required>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name"
+                    maxlength="120" aria-describedby="nameCount" required>
+                  <small class="character-count" id="nameCount" data-character-count-for="name">0 / 120</small>
                 </div>
                 <div class="col-md-6 form-group mb-3">
                   <label for="email" class="col-form-label">Email</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your email"
+                    maxlength="254" aria-describedby="emailCount" required>
+                  <small class="character-count" id="emailCount" data-character-count-for="email">0 / 254</small>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="subject" class="col-form-label">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                    maxlength="160" aria-describedby="subjectCount">
+                  <small class="character-count" id="subjectCount" data-character-count-for="subject">0 / 160</small>
                 </div>
               </div>
               <div class="row mb-5">
                 <div class="col-md-12 form-group mb-3">
                   <label for="contactMessage" class="col-form-label">Message</label>
                   <textarea class="form-control" name="message" id="contactMessage" cols="30" rows="4"
-                    placeholder="Message" required></textarea>
+                    placeholder="Message" maxlength="5000" aria-describedby="contactMessageCount" required></textarea>
+                  <small class="character-count" id="contactMessageCount" data-character-count-for="contactMessage">0 / 5000</small>
                 </div>
               </div>
               <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="display: none;">
@@ -1085,6 +1127,30 @@
           </div>
         </div>
       </div>
+
+      <!--
+      <h2 id="legal" class="title centered">Legal & Credits</h2>
+      <div class="centered">
+        <div class="custom custom-list-item section-card legal-card">
+          <p>
+            This portfolio is an independent personal project. It is not affiliated with, endorsed by, or sponsored by
+            Iowa State University, Iowa Central Community College, iRobot, ZedBoard, DigitalOcean, Cloudflare, Resend,
+            YouTube, GitHub, LinkedIn, NASA, Apple, or any companies, schools, products, or organizations referenced in
+            project descriptions.
+          </p>
+          <p>
+            The NASA-style favicon is a personal parody/design reference and is not an official NASA mark. The MacBook
+            Neo video is parody/demo content and is not affiliated with Apple or The Matrix franchise. No ownership is
+            claimed over third-party trademarks, names, logos, music, screenshots, videos, or embedded media.
+          </p>
+          <p>
+            Free 3D model assets used for the background scene, including the moon, Saturn, and space shuttle, are
+            credited to their original creators and license holders. They are used as visual portfolio assets only.
+          </p>
+        </div>
+      </div>
+
+      -->
 
     </div>
   </main>
