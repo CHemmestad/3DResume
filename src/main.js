@@ -300,10 +300,11 @@ loader.load(assetPath('images/space_shuttle.glb'), (gltf) => {
 
 const clock = new THREE.Clock();
 const mixers = [];
+const saturnPosition = new THREE.Vector3(17, 10, 54);
 loader.load(assetPath('images/saturn_planet.glb'), (gltf) => {
   const saturn = gltf.scene;
 
-  saturn.position.set(17, 10, 54);
+  saturn.position.copy(saturnPosition);
   saturn.scale.set(5, 5, 5);
   saturn.rotateX(0.1);
   saturn.rotateZ(0.3);
@@ -361,10 +362,20 @@ mars.position.setX(-8);
 
 const moonBaseScale = 1;
 const shuttleBaseScale = 0.04;
+const cameraStart = new THREE.Vector3(0, 0, 1);
+const cameraEndZ = saturnPosition.z + 15;
+const cameraEnd = new THREE.Vector3(cameraEndZ * 0.2, cameraEndZ * 0.2, cameraEndZ);
 
 function moveCamera() {
-  const t = document.body.getBoundingClientRect().top;
-  const scrollAmount = Math.abs(t);
+  const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+  const scrollProgress = maxScroll > 0
+    ? THREE.MathUtils.clamp(window.scrollY / maxScroll, 0, 1)
+    : 0;
+  camera.position.lerpVectors(cameraStart, cameraEnd, scrollProgress);
+
+  // Keep the other scroll effects in sync with the fixed camera journey.
+  const scrollAmount = scrollProgress * cameraEndZ / 0.01;
+  const t = -scrollAmount;
   const shrinkStart = 600;
   const shrinkDistance = 6000;
   const shrinkProgress = THREE.MathUtils.clamp((scrollAmount - shrinkStart) / shrinkDistance, 0, 1);
@@ -391,13 +402,18 @@ function moveCamera() {
   // backgroundMesh.position.z = Math.min(backgroundMesh.position.z, -100);
   backgroundMesh.position.z = t * .1 + -100;
 
-  camera.position.z = t * -.01;
-  camera.position.x = t * -.002;
-  camera.position.y = t * -.002;
-  camera.position.z = Math.max(camera.position.z, 1);
-
 }
-document.body.onscroll = moveCamera;
+window.addEventListener('scroll', moveCamera, { passive: true });
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  moveCamera();
+});
+// Images and expanding content can change page length without a window resize.
+const pageResizeObserver = new ResizeObserver(moveCamera);
+pageResizeObserver.observe(document.body);
+moveCamera();
 
 const value = 0.0025;
 const rotation = 0.2;
