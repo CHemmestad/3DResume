@@ -235,6 +235,97 @@
       opacity: 0.9;
     }
 
+    .work-projects {
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .work-projects h4 {
+      margin-bottom: 12px;
+    }
+
+    .work-projects-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .work-projects-list > li {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .work-projects-list .work-header {
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(136, 160, 223, 0.4);
+    }
+
+    .work-projects-list .work-title {
+      font-size: 1.4rem;
+    }
+
+    .work-project-details {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: 8px 18px;
+      margin: 0;
+    }
+
+    .work-project-details dd {
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .work-project-technologies {
+      max-width: 100%;
+      margin: 18px 0 0;
+    }
+
+    @media (max-width: 899px) {
+      .work-projects-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .work-project-details {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .work-project-details dd:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin: 20px;
+    }
+
+    .certificate-card {
+      min-width: 0;
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    @media (min-width: 900px) {
+      .certificates-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .certificates-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
     .title {
       border: 4px solid;
       border-image: linear-gradient(to right, rgba(136, 160, 223, .05), rgba(136, 160, 223, 0.75), rgba(136, 160, 223, .05)) 1;
@@ -363,6 +454,7 @@
       <li><a class="top-nav-link" href="#about">About</a></li>
       <li><a class="top-nav-link" href="#projects">Projects</a></li>
       <li><a class="top-nav-link" href="#work">Work</a></li>
+      <li><a class="top-nav-link" href="#certificates">Certificates</a></li>
       <li><a class="top-nav-link" href="#contact">Contact</a></li>
       <li><a class="top-nav-link" href="#message">Message</a></li>
     </ul>
@@ -1022,7 +1114,7 @@
       <div class="centered">
         <div class="card mb-3 custom custom-list-item section-card wide-section-card work-card">
           <div class="work-header">
-            <h3 class="work-title">Independent Contract Work</h3>
+            <h3 class="work-title">AI Trainer &amp; Evaluator</h3>
             <p class="work-dates">September 2026 - Present</p>
           </div>
           <p class="work-company">DataAnnotation | Remote</p>
@@ -1050,10 +1142,9 @@
       <div class="centered">
         <div class="card mb-3 custom custom-list-item section-card wide-section-card work-card">
           <div class="work-header">
-            <h3 class="work-title">Full-Stack Web Developer</h3>
+            <h3 class="work-title">Freelance Full-Stack Web Developer</h3>
             <p class="work-dates">May 2025 - Present</p>
           </div>
-          <p class="work-company">Freelance</p>
           <p>
             Develop websites and web applications around client requirements. Build frontend interfaces
             and backend services, configure databases and
@@ -1072,8 +1163,101 @@
             <span class="badge rounded-pill text-bg-primary">Software Deployment</span>
             <span class="badge rounded-pill text-bg-primary">Cloudflare</span>
           </div>
+          <section class="work-projects" aria-labelledby="freelance-projects-title">
+            <h4 id="freelance-projects-title">Projects</h4>
+            <ul class="work-projects-list">
+              <li class="card custom-list-item work-card">
+                <div class="work-header">
+                  <h5 class="work-title">Dayton Leader</h5>
+                  <p class="work-dates">May 2025 - Present</p>
+                </div>
+                <p class="work-company">Remote</p>
+                <p>
+                  Developed a full-stack website for the Dayton Leader newspaper, bringing local news,
+                  recurring columns, and digital newspaper editions into one platform. Built reader account
+                  features and editorial tools for managing articles, images, and newspaper content.
+                </p>
+                <h6>Project Details</h6>
+                <dl class="work-project-details">
+                  <dt>Features</dt>
+                  <dd>News articles, reader comments, digital editions, account settings, and subscription plan selection.</dd>
+                  <dt>Editorial Tools</dt>
+                  <dd>Article publishing with image uploads, column editing, newspaper uploads, and administrator user management.</dd>
+                  <dt>Integrations</dt>
+                  <dd>Stripe embedded checkout for plan purchases and Cloudflare R2 object storage for uploaded media.</dd>
+                  <dt>Authentication</dt>
+                  <dd>JWT authentication, bcrypt password hashing, and role-based access for readers, editors, and administrators.</dd>
+                </dl>
+                <div class="skills work-project-technologies">
+                  <h5 class="card-title">Technologies</h5>
+                  <span class="badge rounded-pill text-bg-primary">JavaScript</span>
+                  <span class="badge rounded-pill text-bg-primary">React</span>
+                  <span class="badge rounded-pill text-bg-primary">React Router</span>
+                  <span class="badge rounded-pill text-bg-primary">Bootstrap</span>
+                  <span class="badge rounded-pill text-bg-primary">Node.js</span>
+                  <span class="badge rounded-pill text-bg-primary">Express</span>
+                  <span class="badge rounded-pill text-bg-primary">Couchbase</span>
+                </div>
+              </li>
+            </ul>
+          </section>
         </div>
       </div>
+
+      <!-- Replace the bracketed placeholders when contract work begins. -->
+      <div class="centered">
+        <div class="card mb-3 custom custom-list-item section-card wide-section-card work-card">
+          <div class="work-header">
+            <h3 class="work-title">Contract Software Engineer</h3>
+            <p class="work-dates">[Start date - End date]</p>
+          </div>
+          <p>[Describe the contract scope, your responsibilities, and the software you built or improved.]</p>
+          <div class="skills">
+            <h5 class="card-title">Primary Skills</h5>
+            <span class="badge rounded-pill text-bg-primary">[Skill / Technology]</span>
+            <span class="badge rounded-pill text-bg-primary">[Skill / Technology]</span>
+          </div>
+          <section class="work-projects" aria-labelledby="contract-projects-title">
+            <h4 id="contract-projects-title">Projects</h4>
+            <ul class="work-projects-list">
+              <li class="card custom-list-item work-card">
+                <div class="work-header">
+                  <h5 class="work-title">[Project Name]</h5>
+                  <p class="work-dates">[Start date - End date]</p>
+                </div>
+                <p class="work-company">[City, State / Remote]</p>
+                <p>[Describe the project, the client’s goals, and your contributions.]</p>
+                <h6>Project Details</h6>
+                <dl class="work-project-details">
+                  <dt>Features</dt>
+                  <dd>[Main features or deliverables]</dd>
+                  <dt>Results</dt>
+                  <dd>[Outcome or impact of your work]</dd>
+                </dl>
+                <div class="skills work-project-technologies">
+                  <h5 class="card-title">Technologies</h5>
+                  <span class="badge rounded-pill text-bg-primary">[Technology]</span>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+
+      <section aria-labelledby="certificates">
+        <h2 id="certificates" class="title centered">Certificates</h2>
+        <div class="certificates-grid">
+          <!-- Replace the placeholders and duplicate this card for additional certificates. -->
+          <div class="card custom custom-list-item work-card certificate-card">
+            <div class="work-header">
+              <h3 class="work-title">[Certificate Name]</h3>
+              <p class="work-dates">[Month Year]</p>
+            </div>
+            <p class="work-company">[Issuing Organization]</p>
+            <p>[Describe the certificate and the knowledge or practical experience it demonstrates.]</p>
+          </div>
+        </div>
+      </section>
 
       <h2 id="contact" class="title centered">Contact Info</h2>
       <div class="centered">
