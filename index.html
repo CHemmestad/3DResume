@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script id="turnstileScript" src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
   <title>Caleb's Portfolio</title>
 
   <style>
@@ -397,9 +397,15 @@
 
     .turnstile-wrap {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
       margin-bottom: 18px;
       min-height: 65px;
+    }
+
+    #contactVerificationStatus:empty {
+      display: none;
     }
 
     @media (max-width: 575px) {
@@ -443,7 +449,7 @@
       }
     }
   </style>
-  <script type="module" crossorigin src="/assets/index-DVjAnKz8.js"></script>
+  <script type="module" crossorigin src="/assets/index-Bgy40Sxj.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-CrRlMsUf.css">
 </head>
 
@@ -1325,6 +1331,10 @@
               <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="display: none;">
               <div class="turnstile-wrap">
                 <div id="contactTurnstile"></div>
+                <p id="contactVerificationStatus" class="small mt-2" role="status" aria-live="polite"></p>
+                <button type="button" id="contactVerificationRetry" class="btn btn-outline-light btn-sm mb-3" hidden>
+                  Retry verification
+                </button>
               </div>
               <div class="row justify-content-center">
                 <div class="col-md-5 form-group text-center">
